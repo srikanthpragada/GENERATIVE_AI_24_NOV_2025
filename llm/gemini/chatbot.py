@@ -10,7 +10,11 @@ while True:
     prompt = input("Enter prompt [q to quit, c to create new chat] :")
     if prompt.lower() == 'q':
         break 
-    
+
+    if prompt.lower() == 'c':
+        messages = []
+        continue 
+        
     messages.append( {"role" : "user", "content" : prompt})  # HumanMessage
     response = model.invoke(messages)
     print(response.content)
