@@ -12,7 +12,7 @@ config = GenerateContentConfig(
 )
 
 response = client.models.generate_content(
-    model="gemini-2.0-flash",
+    model="gemini-2.5-flash",
     contents="write about sun. Keep it short",
     config = config
 )
