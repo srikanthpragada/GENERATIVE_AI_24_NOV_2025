@@ -8,7 +8,7 @@ loader = PyPDFLoader("./docs/courses_offered.pdf", mode='page')
 
 # Load the documents
 docs = loader.load()
-print("Loaded Documents", len(docs))
+print("Loaded Documents :", len(docs))
 
 text_splitter = RecursiveCharacterTextSplitter(
       chunk_size=200,

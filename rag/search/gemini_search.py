@@ -1,4 +1,3 @@
-from google import genai
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_core.documents import Document
@@ -12,6 +11,8 @@ docs = [
     Document(page_content="AWS is super"),
 ]
 
+
+# Create a vector store of embeddings of documents 
 vectorstore = FAISS.from_documents(docs, embeddings_model)
 
 query = "What uses neural networks?"

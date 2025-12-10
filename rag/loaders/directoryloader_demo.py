@@ -4,11 +4,11 @@ from langchain_community.document_loaders.directory import DirectoryLoader
 from langchain_community.document_loaders.text import TextLoader    
 
 # Load the text file from the given directory
-loader = DirectoryLoader("./docs", glob=["*.txt", "*.py"], loader_cls=TextLoader)   
+loader = DirectoryLoader("./docs", glob=["*.txt", "*.csv",  "*.py"], loader_cls=TextLoader)   
 
 # Load the documents
 docs = loader.load()
-print("Loaded Documents", len(docs))
+print("Loaded Documents :", len(docs))
 
 # Print the loaded documents
 for doc in docs:
