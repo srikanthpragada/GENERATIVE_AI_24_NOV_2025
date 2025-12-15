@@ -27,8 +27,8 @@ messages = [
     SystemMessage(
         'You can use tools when necessary, but otherwise answer the question using your own knowledge.'
     ),
-    HumanMessage(content="What is the capital of India")
-   # HumanMessage(content="What is the weather in Vizag and its population")
+   #HumanMessage(content="What is the capital of India")
+   HumanMessage(content="What is the weather in Vizag and its population")
 ]
 
 gemini_with_tools = gemini.bind_tools([get_weather, get_population])
@@ -39,9 +39,6 @@ ai_message = gemini_with_tools.invoke(messages)
 
 messages.append(ai_message)
 
-# for message in messages:
-#     message.pretty_print()
-
 
 for tool in ai_message.tool_calls:
     chosen_function_name = tool["name"]
@@ -50,11 +47,7 @@ for tool in ai_message.tool_calls:
     # Call the function and put result as Tool Message
     tool_result = chosen_function.invoke(tool)
     messages.append(tool_result)
-
-    # messages.append(
-    #     ToolMessage(content=function_result,  tool_call_id=tool_call_id)
-    # )
-
+ 
 
 final_result = gemini_with_tools.invoke(messages)
 messages.append(final_result)
