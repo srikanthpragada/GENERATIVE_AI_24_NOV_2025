@@ -1,3 +1,4 @@
+# TAVILY_API_KEY env variable for Tavily
 from langchain.chat_models import init_chat_model
 from langchain_tavily import TavilySearch
 from langgraph.checkpoint.memory import InMemorySaver

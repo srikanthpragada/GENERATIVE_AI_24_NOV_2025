@@ -7,7 +7,7 @@ import json
 
 @tool()
 def search(name : str) -> list[dict]:
-    """Search for a product with the given name and return details as dict
+    """Search for a product with the given name and return details as list[dict]
 
     Args:
         name : str
