@@ -4,9 +4,9 @@ from fastmcp import FastMCP
 mcp = FastMCP("File Server")
 
 
-# Load contents of the file 
+# Load contents of the file
 @mcp.tool()
-def read_file(filename : str) -> str | None:
+def read_file(filename: str) -> str | None:
     """Reads the contents of the given file"""
     try:
         with open(filename, "rt") as f:
@@ -15,5 +15,4 @@ def read_file(filename : str) -> str | None:
         return None
 
 
- 
 mcp.run(transport="stdio")

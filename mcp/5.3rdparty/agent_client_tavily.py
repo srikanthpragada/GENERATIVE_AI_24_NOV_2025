@@ -17,11 +17,17 @@ clients = MultiServerMCPClient({"Tavily": {
 
 async def process():
         tools = await clients.get_tools()
+        for tool in tools:
+                print(tool.name)
+
+        print('-' * 50)
+        
         model = init_chat_model("gpt-4o-mini", model_provider="openai")
         #model = init_chat_model("gemini-2.5-flash", model_provider="google_genai")
         agent = create_agent(model, tools)
         response = await agent.ainvoke({"messages": "Who won IPL 2025?"})
-        print(response["messages"][-1].content)
+        for message in response["messages"]:
+                message.pretty_print()
 
 
 asyncio.run(process())

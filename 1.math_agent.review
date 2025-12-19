@@ -1,0 +1,65 @@
+# Code Review for 1.math_agent.py
+
+## Overview
+This script defines a mathematical agent using tools for multiplication, addition, and division, and then invokes it with a HumanMessage. The following points are suggestions for improvements and best practices.
+
+## Suggestions
+
+1. **Function Annotations**:
+   - Consider using more descriptive types for function arguments and return types. For example, for the `divide` function, you could indicate that division by zero can occur. Adding a return type of `Optional[float]` might clarify this if you handle the zero division case.
+
+2. **Zero Division Handling**:
+   - In the `divide` function, you should handle the case where `b` is zero to prevent a `ZeroDivisionError`. This could be done by raising an exception or returning a special value (e.g. `None`), with a corresponding message.
+   ```python
+   def divide(a: int, b: int) -> Optional[float]:
+       if b == 0:
+           raise ValueError("Division by zero is not allowed.")
+       return a / b
+   ```
+
+3. **Docstrings**:
+   - The docstrings are currently brief. Consider providing more detail, such as what the function returns and examples of usage. A good standard is to include type information in the docstring.
+   - Example:
+   ```python
+   """
+   Multiply a and b.
+
+   Args:
+       a (int): The first integer.
+       b (int): The second integer.
+
+   Returns:
+       int: The product of a and b.
+
+   Example:
+       >>> multiply(2, 3)
+       6
+   """
+   ```
+
+4. **HumanMessage Input**:
+   - The invocation of `agent.invoke()` currently uses a hard-coded `HumanMessage`. Consider making this more dynamic and user-friendly, allowing for user input or external command arguments.
+
+5. **Response Handling**:
+   - The way you print messages in the response could be improved for better clarity. You might want to handle empty responses or format the output more cleanly.
+   - Example:
+   ```python
+   if response['messages']:
+       for message in response['messages']:
+           print(message.pretty_print())
+   else:
+       print("No response received.")
+   ```
+
+6. **Imports**:
+   - Ensure that all imports are necessary and there's no redundant code. It seems `langchain_core.messages` and `langchain_core.tools` both have potential imports that can be simplified.
+
+7. **Comments**:
+   - While the code is mostly self-explanatory, consider adding comments that explain the purpose of larger code blocks or any complex logic.
+
+8. **Testing**:
+   - There are no unit tests included for the functions. It would be beneficial to implement some test cases to validate the functionality of `add`, `multiply`, and `divide` functions.
+   - You could use Python’s built-in `unittest` framework or another testing framework like `pytest`.
+
+## Conclusion
+The overall structure of the code is solid, with clear functionality. By addressing these suggestions, the code can improve in terms of robustness, readability, and user interaction.

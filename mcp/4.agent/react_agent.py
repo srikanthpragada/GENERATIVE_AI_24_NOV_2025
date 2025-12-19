@@ -20,11 +20,11 @@ clients = MultiServerMCPClient(
 
 async def process():
     tools = await clients.get_tools()
-    # for tool in tools:
-    #     print(tool.name)
+    for tool in tools:
+        print(tool.name)
 
 
-    model = init_chat_model("gemini-2.5-flash", model_provider="google_genai")
+    model = init_chat_model("gpt-4o-mini", model_provider="openai")
     agent = create_agent(model, tools)
     prime_response = await agent.ainvoke({"messages": "is 383843 a prime number?"})
     print(prime_response["messages"][-1].content)
@@ -33,7 +33,8 @@ async def process():
     print(perfect_response["messages"][-1].content)
 
     file_response = await agent.ainvoke({"messages": "Get contents of test.txt file"})
-    # print(file_response["messages"][-1].content)
+    print(file_response["messages"][-1].content)
+    
     for msg in file_response['messages']:
         msg.pretty_print()
 
