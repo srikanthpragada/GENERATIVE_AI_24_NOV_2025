@@ -27,31 +27,32 @@ async def process():
     agent = create_agent(model, tools, checkpointer=checkpointer)
     config = {"configurable": {"thread_id": "t1"}}
     
-    # response = await agent.ainvoke({"messages": "Add todo - Change CAR battery with importance high"}, 
-    #    config = config)
+    # human_message = HumanMessage("Add todo - Fix Car Sensor - importance high")
+    # response = await agent.ainvoke( {"messages" : [system_message, human_message] },
+    #                                 config = config)
     # print(response["messages"][-1].content)
 
     # response = await agent.ainvoke(
     #     {"messages": "List all todos with high importance as bullets"}, config = config)
     # print(response["messages"][-1].content)
 
-    # response = await agent.ainvoke({"messages": "List all todos and their importance as bullets"})
+    # response = await agent.ainvoke({"messages": "List all todos and their importance as bullets"}, config = config)
     # print(response["messages"][-1].content)
 
     # human_message = HumanMessage("Show me todos related to book")
-    # response = await agent.ainvoke( {"messages" : [system_message, human_message]})
+    # response = await agent.ainvoke( {"messages" : [system_message, human_message]}, config = config)
     # print(response["messages"][-1].content)
 
-    # human_message = HumanMessage("Show 2 recently added todos")
-    # response = await agent.ainvoke({"messages": [system_message, human_message]})
-    # print(response["messages"][-1].content)
+    human_message = HumanMessage("Show 2 recently added todos")
+    response = await agent.ainvoke({"messages": [system_message, human_message]}, config = config)
+    print(response["messages"][-1].content)
 
     # human_message = HumanMessage("Get all todos and classify each todo as Finance, Sports, Books")
-    # response = await agent.ainvoke({"messages": [system_message, human_message]})
+    # response = await agent.ainvoke({"messages": [system_message, human_message]}, config = config)
     # print(response["messages"][-1].content)
 
     # human_message = HumanMessage("Delete todos related to Jack and tell me how many you deleted")
-    # response = await agent.ainvoke({"messages": [system_message, human_message]})
+    # response = await agent.ainvoke({"messages": [system_message, human_message]}, config = config)
     # print(response["messages"][-1].content)
 
     # human_message = HumanMessage("Show todos related to book with high importance")
@@ -75,8 +76,8 @@ async def process():
     # response = await agent.ainvoke({"messages": [system_message, human_message]}, config)
     # print(response["messages"][-1].content)
 
-    human_message = HumanMessage("Count how many todos are there")
-    response = await agent.ainvoke({"messages": [system_message, human_message]}, config)
-    print(response["messages"][-1].content)
+    # human_message = HumanMessage("Count how many todos are there")
+    # response = await agent.ainvoke({"messages": [system_message, human_message]}, config)
+    # print(response["messages"][-1].content)
 
 asyncio.run(process())

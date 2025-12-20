@@ -29,7 +29,7 @@ async def run_agent(user_input : str) -> str:
 
 
 # Streamlit App UI
-st.title("Todo Assistant Agent")
+st.title("Todos Agent")
 st.write("Interact with your MCP-enabled AI Todo Agent")
 
 with st.form(key="agent_form"):

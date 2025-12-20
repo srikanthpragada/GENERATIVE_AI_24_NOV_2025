@@ -9,7 +9,7 @@ client = Client(transport)
 async def add_todo():
     async with client:
         # Call add
-        result = await client.call_tool("add_todo", {"todo": 'Complete MCP Project'})
+        result = await client.call_tool("add_todo", {"todo": 'Write year-end blog'})
         print(result)
  
 
@@ -19,4 +19,5 @@ async def list_todos_by_importance(importance):
         result = await client.call_tool("get_todos_by_importance", {"importance": importance})
         print(result)
 
-asyncio.run(add_todo())
+#asyncio.run(add_todo())
+asyncio.run(list_todos_by_importance('high'))
